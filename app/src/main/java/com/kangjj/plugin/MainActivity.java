@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityInfo activityInfo = packageInfo.activities[0];
 
         //占位
-        Intent intent = new Intent(this,ProxyActivity.class);
+        Intent intent = new Intent( this,ProxyActivity.class);
         intent.putExtra("className",activityInfo.name);
         startActivity(intent);
     }
