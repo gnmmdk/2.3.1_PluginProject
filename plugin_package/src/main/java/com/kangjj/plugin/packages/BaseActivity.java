@@ -2,6 +2,7 @@ package com.kangjj.plugin.packages;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,7 +17,7 @@ import com.kangjj.plugin.stander.ActivityInterface;
  * @CreateDate: 2019/11/12 16:09
  */
 public class BaseActivity extends Activity implements ActivityInterface {
-    private Activity appActivity;
+    protected Activity appActivity;
 
     @Override
     public void insertAppContext(Activity appActivity) {
@@ -51,5 +52,11 @@ public class BaseActivity extends Activity implements ActivityInterface {
 
     public View findViewById(int viewId){
         return appActivity.findViewById(viewId);
+    }
+
+    public void startActivity(Intent intent){
+        Intent intentNew = new Intent();
+        intentNew.putExtra("className",intent.getComponent().getClassName());
+        appActivity.startActivity(intentNew);
     }
 }
