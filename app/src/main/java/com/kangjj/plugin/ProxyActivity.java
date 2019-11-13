@@ -1,7 +1,10 @@
 package com.kangjj.plugin;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -60,5 +63,25 @@ public class ProxyActivity extends Activity {
         proxyIntent.putExtra("className",className);
         //要给TestActivity进栈
         super.startActivity(proxyIntent);
+    }
+
+    @Override
+    public ComponentName startService(Intent intent) {
+        String className = intent.getStringExtra("className");
+        Intent proxyIntent = new Intent(this,ProxyService.class);
+        proxyIntent.putExtra("className",className);
+        return super.startService(proxyIntent);
+    }
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        String className = receiver.getClass().getName();// PluginReceiver的全类名
+        // 在宿主 注册广播
+        return super.registerReceiver(new ProxyReceiver(className), filter);
+    }
+
+    @Override
+    public void sendBroadcast(Intent intent) {
+        super.sendBroadcast(intent);// 发送
     }
 }
