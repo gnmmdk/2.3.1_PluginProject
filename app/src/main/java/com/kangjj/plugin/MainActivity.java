@@ -44,4 +44,15 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("className",activityInfo.name);
         startActivity(intent);
     }
+
+    public void loadStaticReceiver(View view) {
+        PluginManager.getInstatnce(this).parserApkAction();
+    }
+
+    public void sendStaticReceiver(View view) {
+        Intent intent = new Intent();
+//        intent.setAction("plugin.static_receiver");
+        intent.setAction("plugin.static_receiver2");
+        sendBroadcast(intent);
+    }
 }

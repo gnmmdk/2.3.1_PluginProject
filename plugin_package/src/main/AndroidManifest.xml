@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".StaticReceiver">
+            <intent-filter>
+                <action android:name="plugin.static_receiver"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="plugin.static_receiver2"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
